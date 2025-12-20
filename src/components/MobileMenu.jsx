@@ -26,7 +26,6 @@ export default function MobileMenu({open, onClose}){
             <li><Link to="/case-studies" onClick={onClose}>Case studies</Link></li>
             <li><Link to="/blog" onClick={onClose}>Blog</Link></li>
             <li><Link to="/careers" onClick={onClose}>Careers</Link></li>
-            <li><Link to="/pricing" onClick={onClose}>Pricing</Link></li>
             <li><Link to="/contact" onClick={onClose}>Contact</Link></li>
           </ul>
         </nav>
