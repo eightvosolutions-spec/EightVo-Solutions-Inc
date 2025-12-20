@@ -1,16 +1,20 @@
-
-
-
 import React from 'react'
-import LeadershipCard from '../components/LeadershipCard'
-import NewsBanner from '../components/NewsBanner'
 import CaseStudyCard from '../components/CaseStudyCard'
 import useDocumentTitle from '../utils/useDocumentTitle'
 
-const leaders = [
-  {name:'Sandeep Reddy', title:'CEO', photo:'', quote:'We focus on measurable impact.'},
-  {name:'Manoj Kumar', title:'Director - Business & Technology', photo:'', quote:'Technology and strategy together.'},
-  {name:'Bala Krishna', title:'Director - Operations, India', photo:'', quote:'Operational excellence and delivery.'}
+const clarityHighlights = [
+  {
+    title: "The Challenge Isn't Technology — It's Clarity",
+    copy: 'We cut through noise so ideas ship sooner.'
+  },
+  {
+    title: 'New ideas. Existing platforms. Same momentum.',
+    copy: 'Greenfield builds or live system boosts — both get fast squads.'
+  },
+  {
+    title: 'Direction in days, launches in weeks.',
+    copy: 'Lean plans, visible progress, measurable impact.'
+  }
 ]
 
 export default function Home(){
@@ -20,8 +24,8 @@ export default function Home(){
       <section className="hero">
         <div className="container hero-inner">
           <div style={{maxWidth:640}}>
-            <h1>Build and deliver software products and solutions that scale</h1>
-            <p>We combine product strategy, engineering, and operations to deliver measurable business outcomes. Start with an MVP and iterate rapidly.</p>
+            <h1>Launch new products and elevate the ones you already run</h1>
+            <p>Product minds and engineers in one crew, ready for fresh builds or bold upgrades.</p>
             <div className="hero-cta">
               <button className="btn btn-primary" onClick={()=>{ const el = document.querySelector('.site-header .header-cta'); if(el) el.click(); }}>Get started</button>
               <button className="btn btn-secondary" onClick={()=>{ const el = document.querySelector('.site-header .header-cta'); if(el) el.click(); }}>Request demo</button>
@@ -29,13 +33,25 @@ export default function Home(){
           </div>
           <aside style={{minWidth:260}}>
             <div className="card" style={{padding:20}}>
-              <h3 style={{marginTop:0}}>MVP in 8 weeks</h3>
-              <p className="muted">Fast, focused teams delivering production-ready products.</p>
+              <h3 style={{marginTop:0}}>Momentum in 8 weeks</h3>
+              <p className="muted">Focused teams delivering launch-ready work, sprint after sprint.</p>
               <div style={{marginTop:12}}>
                 <button className="btn btn-primary" onClick={()=>{ const el = document.querySelector('.site-header .header-cta'); if(el) el.click(); }}>Start a project</button>
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      <section className="section container" aria-labelledby="clarity-blocks">
+        <h2 id="clarity-blocks" className="visually-hidden">Why teams pick us</h2>
+        <div className="cards" style={{marginTop:0}}>
+          {clarityHighlights.map((item, i) => (
+            <article key={i} className="card" style={{padding:20}}>
+              <h3 style={{marginTop:0}}>{item.title}</h3>
+              <p className="muted">{item.copy}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -52,7 +68,7 @@ export default function Home(){
 
           <CaseStudyCard
             title="SaaS productization for a media startup"
-            excerpt="Built an MVP and a growth roadmap; accelerated time-to-market." 
+            excerpt="Built an MVP and a growth roadmap; accelerated time-to-market."
             image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=60&auto=format&fit=crop"
             metric="MVP in 8 weeks"
             href="/case-studies/media-productization"
@@ -88,16 +104,16 @@ export default function Home(){
         <h2>Use cases</h2>
         <div className="cards" style={{marginTop:12}}>
           <article className="card">
-            <h3>Productization</h3>
-            <p className="muted">Turn ideas into measurable products with clear roadmaps.</p>
+            <h3>New builds</h3>
+            <p className="muted">Fast tracks from sketch to launch-ready MVPs.</p>
           </article>
           <article className="card">
-            <h3>Platform Migration</h3>
-            <p className="muted">Migrate legacy systems to modern cloud-native platforms.</p>
+            <h3>Platform lifts</h3>
+            <p className="muted">Modernize live systems without slowing the business.</p>
           </article>
           <article className="card">
-            <h3>Analytics & Data</h3>
-            <p className="muted">Centralize metrics and enable data-driven decisions.</p>
+            <h3>Data leaps</h3>
+            <p className="muted">Bring analytics and automation into everyday decisions.</p>
           </article>
         </div>
       </section>
