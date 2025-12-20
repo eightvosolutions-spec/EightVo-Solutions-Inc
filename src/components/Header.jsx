@@ -27,11 +27,11 @@ export default function Header(){
         <div className="nav-spacer" />
 
         <nav className="main-nav" aria-label="Primary">
+          <Link to="/">Home</Link>
           <Link to="/solutions">Solutions</Link>
           <Link to="/case-studies">Case studies</Link>
           <Link to="/blog">Blog</Link>
           <Link to="/careers">Careers</Link>
-          <Link to="/pricing">Pricing</Link>
         </nav>
         <div style={{marginLeft:12,display:'flex',gap:8,alignItems:'center'}}>
           <button onClick={() => { trackEvent('cta_contact_clicked',{source:'header'}); setContactOpen(true) }} className="btn btn-primary header-cta" aria-label="Contact EightVo Solutions">Contact</button>
