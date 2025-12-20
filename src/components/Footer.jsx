@@ -57,11 +57,11 @@ export default function Footer(){
           <h4>Contact</h4>
           <address className="vcard" style={{fontStyle:'normal'}}>
             <div className="org">EightVo Solutions Inc.</div>
-            <div className="adr">123 Market St, Suite 400</div>
-            <div className="locality">San Francisco, CA 94103</div>
+            <div className="adr">North York, Ontario</div>
+            <div className="locality">Canada, M2J 1K8</div>
           </address>
           <div className="contact-links" style={{marginTop:6}}>
-            <a href="tel:+14155551234">+1 (415) 555‑1234</a>
+            <a href="tel:+14379863162">+1 (437) 986‑3162</a>
           </div>
           
         </div>
