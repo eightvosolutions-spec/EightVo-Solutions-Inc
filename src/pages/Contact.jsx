@@ -29,24 +29,36 @@ export default function Contact(){
     <div className="page contact">
       <div className="container">
         <h2>Contact Us</h2>
-        <form className="contact-form" onSubmit={onSubmit} noValidate>
-        <label>
-          Name
-          <input aria-invalid={errors.name? 'true' : 'false'} value={values.name} onChange={e=>setValues({...values,name:e.target.value})} />
-          {errors.name && <span role="alert" className="field-error">{errors.name}</span>}
-        </label>
-        <label>
-          Email
-          <input type="email" aria-invalid={errors.email? 'true' : 'false'} value={values.email} onChange={e=>setValues({...values,email:e.target.value})} />
-          {errors.email && <span role="alert" className="field-error">{errors.email}</span>}
-        </label>
-        <label>
-          Message
-          <textarea aria-invalid={errors.message? 'true' : 'false'} value={values.message} onChange={e=>setValues({...values,message:e.target.value})} />
-          {errors.message && <span role="alert" className="field-error">{errors.message}</span>}
-        </label>
-        <button type="submit">Send</button>
-      </form>
+        <div className="split-grid" style={{alignItems:'flex-start'}}>
+          <form className="contact-form card" onSubmit={onSubmit} noValidate>
+            <label>
+              Name
+              <input aria-invalid={errors.name? 'true' : 'false'} value={values.name} onChange={e=>setValues({...values,name:e.target.value})} />
+              {errors.name && <span role="alert" className="field-error">{errors.name}</span>}
+            </label>
+            <label>
+              Email
+              <input type="email" aria-invalid={errors.email? 'true' : 'false'} value={values.email} onChange={e=>setValues({...values,email:e.target.value})} />
+              {errors.email && <span role="alert" className="field-error">{errors.email}</span>}
+            </label>
+            <label>
+              Message
+              <textarea aria-invalid={errors.message? 'true' : 'false'} value={values.message} onChange={e=>setValues({...values,message:e.target.value})} />
+              {errors.message && <span role="alert" className="field-error">{errors.message}</span>}
+            </label>
+            <button className="btn btn-primary" type="submit">Send</button>
+          </form>
+
+          <div className="card" aria-label="Contact information">
+            <h3>Reach our team</h3>
+            <p className="muted">Based in East York, Toronto, Ontario — serving businesses and community initiatives across Canada.</p>
+            <div className="contact-links" style={{display:'flex',flexDirection:'column',gap:6}}>
+              <a href="mailto:info@eightvo.ca">info@eightvo.ca</a>
+              <a href="tel:+14374993602">+1 437 499-3602</a>
+              <a href="tel:+14379863162">+1 437 986-3162</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   )

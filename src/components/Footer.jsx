@@ -23,7 +23,7 @@ export default function Footer(){
       <div className="container footer-grid">
         <div className="footer-brand">
           <Link to="/" className="brand">EightVo Solutions</Link>
-          <p className="muted" style={{marginTop:8}}>We build product-focused engineering teams and cloud-native platforms for growth-stage companies.</p>
+          <p className="muted" style={{marginTop:8}}>We help small businesses and communities unlock value from the technology they already own.</p>
           <div style={{marginTop:12}}>
             <button id="cookie-settings-btn" ref={cookieBtnRef} className="btn btn-ghost" style={{marginLeft:0}} onClick={()=> setCookieOpen(true)}>Cookie Settings</button>
           </div>
@@ -57,11 +57,12 @@ export default function Footer(){
           <h4>Contact</h4>
           <address className="vcard" style={{fontStyle:'normal'}}>
             <div className="org">EightVo Solutions Inc.</div>
-            <div className="adr">123 Market St, Suite 400</div>
-            <div className="locality">San Francisco, CA 94103</div>
+            <div className="adr">East York, Toronto, Ontario</div>
           </address>
           <div className="contact-links" style={{marginTop:6}}>
-            <a href="tel:+14155551234">+1 (415) 555‑1234</a>
+            <a href="mailto:info@eightvo.ca">info@eightvo.ca</a><br />
+            <a href="tel:+14374993602">+1 437 499-3602</a><br />
+            <a href="tel:+14379863162">+1 437 986-3162</a>
           </div>
           
         </div>
@@ -87,18 +88,24 @@ export default function Footer(){
           "logo": "https://www.eightvo.com/logo.png",
           "contactPoint": [{
             "@type": "ContactPoint",
-            "telephone": "+1-415-555-1234",
+            "telephone": "+1-437-499-3602",
             "contactType": "customer service",
-            "areaServed": "US",
+            "areaServed": "CA",
+            "availableLanguage": ["English"]
+          }, {
+            "@type": "ContactPoint",
+            "telephone": "+1-437-986-3162",
+            "contactType": "customer service",
+            "areaServed": "CA",
             "availableLanguage": ["English"]
           }],
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "123 Market St, Suite 400",
-            "addressLocality": "San Francisco",
-            "addressRegion": "CA",
-            "postalCode": "94103",
-            "addressCountry": "US"
+            "streetAddress": "East York",
+            "addressLocality": "Toronto",
+            "addressRegion": "ON",
+            "postalCode": "",
+            "addressCountry": "CA"
           }
         }
         `}
