@@ -120,9 +120,21 @@ body{
 /* Hero */
 .hero{background:linear-gradient(180deg, rgba(11,143,107,0.06), rgba(11,119,176,0.03));padding:48px 0}
 .hero-inner{display:flex;flex-direction:column;gap:20px;align-items:flex-start}
-.hero h1{font-size:1.6rem;margin:0}
-.hero p{color:var(--muted);max-width:60ch}
+.hero-copy{display:flex;flex-direction:column;gap:10px}
+.hero h1{font-size:1.8rem;margin:0}
+.hero p{color:var(--muted);max-width:68ch}
 .hero-cta{display:flex;gap:12px;margin-top:8px}
+.hero-highlight{min-width:260px;align-self:stretch;display:flex;flex-direction:column;gap:10px}
+.eyebrow{letter-spacing:0.06em;text-transform:uppercase;font-weight:700;font-size:0.85rem;color:var(--accent)}
+.plain-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;color:var(--text)}
+.section-header{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.pill-grid{display:flex;flex-direction:column;gap:10px}
+.pill{background:#f1f5f9;border-radius:999px;padding:10px 14px;color:var(--text);border:1px solid #e2e8f0}
+.split-grid{display:grid;grid-template-columns:1fr;gap:var(--gap)}
+.responsive-grid{display:grid;grid-template-columns:1fr;gap:var(--gap)}
+.cta-quote{display:flex;justify-content:center}
+.quote-box{background:linear-gradient(180deg,#0b8f6b1a,#0b77b01a);border:1px solid #d7e8ef;border-radius:16px;padding:24px;max-width:900px;width:100%;text-align:left;box-shadow:0 12px 28px rgba(12,74,110,0.1)}
+.quote-box h2{margin-top:0}
 .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:0;cursor:pointer}
 .btn-primary{background:var(--accent);color:white}
 .btn-secondary{background:transparent;border:1px solid #e6eef0;color:var(--text)}
@@ -174,10 +186,17 @@ body{
   .main-nav{display:flex;gap:8px}
   .hamburger{display:none}
   .hero-inner{flex-direction:row;justify-content:space-between;align-items:center}
-  .hero h1{font-size:2rem}
+  .hero h1{font-size:2.2rem}
   .leadership-list{grid-template-columns:repeat(3,1fr)}
   .news-grid{grid-template-columns:repeat(2,1fr)}
   .cards{grid-template-columns:repeat(3,1fr)}
+  .split-grid{grid-template-columns:repeat(2,1fr)}
+  .responsive-grid{grid-template-columns:repeat(3,1fr)}
+  .pill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
   .footer-inner{flex-direction:row;justify-content:space-between;align-items:center}
+}
+
+@media (max-width:719px){
+  .hero-highlight{width:100%}
 }
 
