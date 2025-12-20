@@ -1,54 +1,183 @@
+@import './styles/tokens.css';
+
+/* local aliases for legacy rules */
 :root{
-  --ysrcp-green: #1aa94a; /* approximate */
-  --ysrcp-blue: #2aa0e0; /* accent */
-  --accent: var(--ysrcp-green);
-  --muted:#666;
-  --bg:#ffffff;
+  --bg: var(--surface);
+  --muted: var(--neutral-500);
+  --accent: var(--color-primary);
+  --accent-2: var(--color-secondary);
+  --glass: rgba(255,255,255,0.65);
+  --radius: var(--radius-card);
+  --max-width: var(--max-width);
+  --gap: var(--space-4);
+  --text: var(--neutral-900);
+  --header-height: 68px;
 }
+
 *{box-sizing:border-box}
-body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:#111}
-.site-header{background:linear-gradient(90deg,var(--ysrcp-blue),var(--ysrcp-green)); color:white; position:sticky; top:0; z-index:10}
-.header-inner{display:flex;align-items:center;gap:12px;padding:12px;max-width:1100px;margin:0 auto}
-.brand{font-weight:700;color:white;text-decoration:none}
+html,body,#root{height:100%}
+body{
+  font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  margin:0;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;
+}
+
+/* Layout */
+.app-root{min-height:100%;display:flex;flex-direction:column;padding-top:var(--header-height)}
+.container{max-width:var(--max-width);margin:0 auto;padding:0 20px;width:100%}
+
+/* Header */
+.site-header{background-color:var(--surface) !important;color:var(--text) !important;position:sticky;top:0;z-index:9999;box-shadow:0 2px 8px rgba(2,6,23,0.06);overflow:visible}
+
+/* Mask underlay: keeps the decorative gradient but blocks page content underneath */
+.site-header::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: var(--surface);
+  z-index:0;
+  pointer-events:none;
+}
+
+/* Ensure header children render above the mask */
+.site-header .container.topbar,
+.site-header .topbar{position:relative;z-index:1}
+
+/* Ensure header links and controls use dark text over white background */
+.site-header a, .site-header .brand, .site-header .main-nav a, .site-header .hamburger{color:var(--text) !important}
+
+/* Dark theme: header should use light header text over dark surface */
+[data-theme="dark"] .site-header,
+:root[data-theme="dark"] .site-header{
+  color:var(--header-text) !important;
+}
+[data-theme="dark"] .site-header a,
+:root[data-theme="dark"] .site-header a{
+  color:var(--header-text) !important;
+}
+.site-header .topbar{display:flex;align-items:center;gap:12px;padding:12px 0;background:transparent}
+
+/* Scoped container for header content (keeps header styles isolated from app-shell) */
+.site-header .container.topbar{background: transparent;}
+
+/* Use backdrop-filter only on supporting browsers as a progressive enhancement */
+@supports ((-webkit-backdrop-filter: blur(6px)) or (backdrop-filter: blur(6px))) {
+  .site-header { -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+}
+
+/* Ensure header text and links are visible and not masked by other rules */
+.site-header, .site-header .topbar, .site-header .container{color:var(--header-text) !important}
+.site-header a, .site-header .brand, .site-header .main-nav a, .site-header .hamburger{color:var(--header-text) !important;background:transparent !important}
+.site-header .main-nav a{padding:8px 12px;border-radius:8px}
+
+/* Emergency header rendering reset: ensure text is visible */
+.site-header .container.topbar, .site-header .container.topbar * {
+  background-color: unset !important;
+  color: var(--header-text) !important;
+}
+
+/* Clear any residual backgrounds or shadows on header links */
+.site-header a, .site-header a:link, .site-header a:visited, .site-header a:hover, .site-header a:focus {
+  color: var(--header-text) !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: var(--header-text) !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-stroke-width: 0 !important;
+  outline: none !important;
+}
+.site-header .main-nav a{background:transparent !important}
+
+/* More specific reset for the header container used in Header.jsx (class: "container topbar") */
+.site-header .container.topbar, .site-header .container.topbar * {
+  background-color: unset !important;
+  color: var(--header-text) !important;
+}
+.site-header .container.topbar a,
+.site-header .container.topbar .brand{
+  display:inline-block !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  -webkit-text-fill-color: var(--header-text) !important;
+  color: var(--header-text) !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+}
+.site-header .container.topbar a:hover,
+.site-header .container.topbar a:focus{
+  background-color: rgba(255,255,255,0.06) !important;
+}
+.brand{font-weight:800;font-size:1.05rem;color:var(--header-text);text-decoration:none}
+.nav-spacer{flex:1}
+.main-nav{display:none}
+.main-nav a{color:white;text-decoration:none;padding:8px 12px;border-radius:8px}
 .hamburger{background:transparent;border:0;color:white;font-size:20px}
-.main-nav{display:none;gap:12px}
-.main-nav a{color:white;text-decoration:none}
-.search{margin-left:auto;display:flex}
-.search input{padding:6px;border-radius:6px 0 0 6px;border:0;min-width:120px}
-.search button{padding:6px;border-radius:0 6px 6px 0;border:0;background:rgba(0,0,0,0.12)}
+.skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{left:8px;top:8px;width:auto;height:auto;background:#000;color:#fff;padding:6px 8px;border-radius:6px}
 
-.mobile-menu{position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,0.6);display:flex;align-items:flex-start}
-.mobile-menu nav{background:white;padding:16px;width:80%;max-width:320px;height:100%;display:flex;flex-direction:column;gap:12px}
-.mobile-menu .close{align-self:flex-end}
+/* Hero */
+.hero{background:linear-gradient(180deg, rgba(11,143,107,0.06), rgba(11,119,176,0.03));padding:48px 0}
+.hero-inner{display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+.hero h1{font-size:1.6rem;margin:0}
+.hero p{color:var(--muted);max-width:60ch}
+.hero-cta{display:flex;gap:12px;margin-top:8px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;border:0;cursor:pointer}
+.btn-primary{background:var(--accent);color:white}
+.btn-secondary{background:transparent;border:1px solid #e6eef0;color:var(--text)}
 
-.main-content{max-width:1100px;margin:16px auto;padding:0 12px}
-.news-banner{height:200px;background-size:cover;background-position:center;color:white;display:flex;align-items:flex-end}
-.banner-inner{background:linear-gradient(transparent, rgba(0,0,0,0.45));width:100%;padding:16px}
+/* Sections */
+.section{padding:28px 0}
+.cards{display:grid;grid-template-columns:1fr;gap:var(--gap)}
+.card{background:white;border-radius:var(--radius);padding:16px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+.card h3{margin:0 0 8px}
 
-.leadership-section{margin:18px 0}
+/* Leadership */
 .leadership-list{display:grid;grid-template-columns:1fr;gap:12px}
-.leadership-card{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid #eee;border-radius:8px}
+.leadership-card{display:flex;gap:12px;align-items:center;padding:12px;border-radius:8px;background:linear-gradient(180deg,#fff,#fbfbfd)}
 .leadership-card img{width:72px;height:72px;border-radius:8px;object-fit:cover}
 
+/* News */
 .news-grid{display:grid;grid-template-columns:1fr;gap:12px}
-.news-item img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+.news-item img{width:100%;height:160px;object-fit:cover;border-radius:8px}
 
-.site-footer{border-top:1px solid #eee;padding:12px 0;background:#fafafa}
-.footer-inner{max-width:1100px;margin:0 auto;padding:0 12px;display:flex;flex-direction:column;gap:12px}
+/* Contact form */
+.contact-form{display:flex;flex-direction:column;gap:12px}
+.contact-form input,.contact-form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid #e6eef0}
+.field-error{color:#b91c1c;font-size:0.95rem;margin-top:6px}
+
+/* Footer */
+.site-footer{background:var(--surface);border-top:1px solid #eef2f7;padding:24px 0;margin-top:auto}
+.footer-inner{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
 .footer-links nav{display:flex;flex-wrap:wrap;gap:12px}
 .footer-links a,.footer-links .linkless{color:var(--muted);text-decoration:none;background:none;border:0;padding:0}
-.brands{display:flex;flex-direction:column;gap:4px}
+.brands{display:flex;flex-direction:column;gap:6px}
+.legal{font-size:0.9rem;color:var(--muted);margin-top:8px}
 
-.cookie-modal{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:flex;align-items:center;justify-content:center}
-.cookie-box{background:white;padding:16px;border-radius:8px;max-width:420px;width:90%}
+/* Cookie modal tweaks (keeps previous rules) */
+.cookie-modal{position:fixed;inset:0;background:rgba(2,6,23,0.45);display:flex;align-items:center;justify-content:center;padding:20px;z-index:80}
+.cookie-box{background:white;padding:20px;border-radius:12px;max-width:520px;width:100%}
+.cookie-toggle{margin:12px 0;padding:12px;border-radius:8px;background:#fbfdfe}
+.cookie-toggle label{display:flex;align-items:center;gap:12px;font-weight:600}
+.cookie-toggle input{width:18px;height:18px}
+.cookie-toggle .muted{margin:6px 0 0;color:var(--muted);font-size:0.9rem}
+.cookie-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px;flex-wrap:wrap}
+.cookie-actions .btn-primary{background:var(--accent);color:white;border:0;padding:8px 12px;border-radius:8px}
+.cookie-actions .btn-secondary{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:8px 12px;border-radius:8px;color:var(--text)}
+.cookie-actions .btn-ghost{background:transparent;border:1px solid #e6eef0;padding:8px 12px;border-radius:8px}
 
-/* Responsive */
-@media(min-width:700px){
-  .main-nav{display:flex}
+/* Utilities */
+.muted{color:var(--muted)}
+
+@media(min-width:720px){
+  .main-nav{display:flex;gap:8px}
   .hamburger{display:none}
-  .news-banner{height:260px}
-  .leadership-list{grid-template-columns:repeat(2,1fr)}
+  .hero-inner{flex-direction:row;justify-content:space-between;align-items:center}
+  .hero h1{font-size:2rem}
+  .leadership-list{grid-template-columns:repeat(3,1fr)}
   .news-grid{grid-template-columns:repeat(2,1fr)}
+  .cards{grid-template-columns:repeat(3,1fr)}
   .footer-inner{flex-direction:row;justify-content:space-between;align-items:center}
-  .brands{flex-direction:row;gap:16px}
 }
+

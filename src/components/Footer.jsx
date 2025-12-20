@@ -1,27 +1,108 @@
-import React, {useState} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import CookieModal from './CookieModal'
 
+function readPrefs(){
+  try{ return JSON.parse(localStorage.getItem('cookiePrefs')||'null') }catch(e){return null}
+}
+
 export default function Footer(){
   const [cookieOpen, setCookieOpen] = useState(false)
+  const cookieBtnRef = useRef(null)
+  
+  const [prefs, setPrefs] = useState(()=> readPrefs())
+
+  useEffect(()=>{
+    const onStorage = ()=> setPrefs(readPrefs())
+    window.addEventListener('storage', onStorage)
+    return ()=> window.removeEventListener('storage', onStorage)
+  },[])
+
   return (
     <footer className="site-footer">
-      <div className="footer-inner">
-        <div className="footer-links">
-          <nav>
-            <Link to="/accessibility">Accessibility</Link>
-            <Link to="/privacy">Privacy Notice</Link>
-            <button className="linkless" onClick={()=>setCookieOpen(true)}>Cookie Settings</button>
-            <Link to="/cookie-policy">Cookie Policy</Link>
+      <div className="container footer-grid">
+        <div className="footer-brand">
+          <Link to="/" className="brand">EightVo Solutions</Link>
+          <p className="muted" style={{marginTop:8}}>We build product-focused engineering teams and cloud-native platforms for growth-stage companies.</p>
+          <div style={{marginTop:12}}>
+            <button id="cookie-settings-btn" ref={cookieBtnRef} className="btn btn-ghost" style={{marginLeft:0}} onClick={()=> setCookieOpen(true)}>Cookie Settings</button>
+          </div>
+        </div>
+
+        <div className="footer-col">
+          <h4>Product</h4>
+          <nav aria-label="Product">
+            <Link to="/solutions">Solutions</Link>
+            <Link to="/pricing">Pricing</Link>
           </nav>
         </div>
 
-        <div className="brands">
-          <strong>•  Eightvo Entertainments</strong>
-          <strong>•  Eightvo Imports and Exports</strong>
+        <div className="footer-col">
+          <h4>Resources</h4>
+          <nav aria-label="Resources">
+            <Link to="/blog">Blog</Link>
+            <Link to="/case-studies">Case studies</Link>
+          </nav>
+        </div>
+
+        <div className="footer-col">
+          <h4>Company</h4>
+          <nav aria-label="Company">
+            <Link to="/careers">Careers</Link>
+            <Link to="/privacy">Privacy</Link>
+          </nav>
+        </div>
+
+        <div className="footer-contact-col" aria-label="Contact information">
+          <h4>Contact</h4>
+          <address className="vcard" style={{fontStyle:'normal'}}>
+            <div className="org">EightVo Solutions Inc.</div>
+            <div className="adr">123 Market St, Suite 400</div>
+            <div className="locality">San Francisco, CA 94103</div>
+          </address>
+          <div className="contact-links" style={{marginTop:6}}>
+            <a href="tel:+14155551234">+1 (415) 555‑1234</a>
+          </div>
+          
         </div>
       </div>
-      <CookieModal open={cookieOpen} onClose={()=>setCookieOpen(false)} />
+
+      <div className="container footer-bottom">
+        <div className="legal">© {new Date().getFullYear()} EightVo Solutions Inc. — All rights reserved.</div>
+        <nav aria-label="Footer small links" className="small-links">
+          <Link to="/accessibility">Accessibility</Link>
+          <Link to="/cookie-policy">Cookie Policy</Link>
+        </nav>
+      </div>
+
+      <CookieModal open={cookieOpen} onClose={()=>{ setCookieOpen(false); setPrefs(JSON.parse(localStorage.getItem('cookiePrefs')||'null')) }} openerRef={cookieBtnRef} />
+
+      <script type="application/ld+json">
+        {`
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "EightVo Solutions Inc.",
+          "url": "https://www.eightvo.com",
+          "logo": "https://www.eightvo.com/logo.png",
+          "contactPoint": [{
+            "@type": "ContactPoint",
+            "telephone": "+1-415-555-1234",
+            "contactType": "customer service",
+            "areaServed": "US",
+            "availableLanguage": ["English"]
+          }],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Market St, Suite 400",
+            "addressLocality": "San Francisco",
+            "addressRegion": "CA",
+            "postalCode": "94103",
+            "addressCountry": "US"
+          }
+        }
+        `}
+      </script>
     </footer>
   )
 }

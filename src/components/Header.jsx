@@ -1,27 +1,16 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-
-function MobileMenu({open, onClose}){
-  if(!open) return null
-  return (
-    <div className="mobile-menu">
-      <button className="close" onClick={onClose}>Close</button>
-      <nav>
-        <Link to="/" onClick={onClose}>Home</Link>
-        <Link to="/investors" onClick={onClose}>Investors</Link>
-        <Link to="/trainings" onClick={onClose}>Trainings</Link>
-        <Link to="/careers" onClick={onClose}>Careers</Link>
-        <Link to="/contact" onClick={onClose}>Contact</Link>
-        <Link to="/terms" onClick={onClose}>Terms</Link>
-      </nav>
-    </div>
-  )
-}
+import { ThemeContext } from '../context/ThemeProvider'
+import ContactSlideOver from './ContactSlideOver'
+import { trackEvent } from '../utils/analytics'
+import MobileMenu from './MobileMenu'
 
 export default function Header(){
   const [open, setOpen] = useState(false)
   const [q, setQ] = useState('')
   const navigate = useNavigate()
+  const { theme, toggle } = useContext(ThemeContext)
+  const [contactOpen, setContactOpen] = useState(false)
 
   function submitSearch(e){
     e.preventDefault()
@@ -30,23 +19,29 @@ export default function Header(){
 
   return (
     <header className="site-header">
-      <div className="header-inner">
-        <button className="hamburger" onClick={()=>setOpen(true)} aria-label="Open menu">☰</button>
-        <Link to="/" className="brand">EightVo Solutions Inc.</Link>
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <div className="container topbar">
+        <button className={`hamburger ${open ? 'open' : ''}`} onClick={()=>setOpen(true)} aria-label="Open menu">☰</button>
+        <Link to="/" className="brand">EightVo Solutions</Link>
 
-        <form className="search" onSubmit={submitSearch} role="search">
-          <input aria-label="Search" placeholder="Search" value={q} onChange={e=>setQ(e.target.value)} />
-          <button type="submit">🔍</button>
-        </form>
+        <div className="nav-spacer" />
 
-        <nav className="main-nav">
-          <Link to="/investors">Investors</Link>
-          <Link to="/trainings">Trainings</Link>
+        <nav className="main-nav" aria-label="Primary">
+          <Link to="/solutions">Solutions</Link>
+          <Link to="/case-studies">Case studies</Link>
+          <Link to="/blog">Blog</Link>
           <Link to="/careers">Careers</Link>
-          <Link to="/contact">Contact</Link>
+          <Link to="/pricing">Pricing</Link>
         </nav>
+        <div style={{marginLeft:12,display:'flex',gap:8,alignItems:'center'}}>
+          <button onClick={() => { trackEvent('cta_contact_clicked',{source:'header'}); setContactOpen(true) }} className="btn btn-primary header-cta" aria-label="Contact EightVo Solutions">Contact</button>
+          <button onClick={toggle} aria-pressed={theme==='dark'} className="btn-ghost" aria-label="Toggle theme">
+            {theme === 'dark' ? '🌙' : '🌞'}
+          </button>
+        </div>
       </div>
       <MobileMenu open={open} onClose={()=>setOpen(false)} />
+      <ContactSlideOver open={contactOpen} onClose={()=>setContactOpen(false)} />
     </header>
   )
 }

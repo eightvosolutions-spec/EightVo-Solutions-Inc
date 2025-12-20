@@ -1,0 +1,67 @@
+/* Minimal AppShell styles: desktop-first layout */
+.app-shell{display:flex;min-height:100vh;font-family:inherit}
+.sidebar{width:260px;background:#0f1724;color:#fff;display:flex;flex-direction:column;padding:12px;box-sizing:border-box}
+.sidebar.collapsed{width:64px}
+.sidebar .brand{font-weight:700;margin-top:8px}
+.collapse-toggle{background:transparent;border:0;color:inherit;cursor:pointer}
+.sidebar-nav{margin-top:16px;display:flex;flex-direction:column;gap:6px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px;border-radius:6px;color:inherit;text-decoration:none}
+.nav-item.active{background:rgba(255,255,255,0.06)}
+.nav-icon{width:28px;text-align:center}
+.nav-label{white-space:nowrap}
+.sidebar-footer{margin-top:auto;padding-top:12px;font-size:12px;opacity:0.8}
+
+.app-main{flex:1;display:flex;flex-direction:column;background:#f6f8fb}
+.app-topbar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-bottom:1px solid rgba(16,24,40,0.06);background:#fff}
+.app-topbar .search input{padding:8px 10px;border:1px solid #e5e7eb;border-radius:6px;min-width:220px}
+.icon-btn{background:transparent;border:0;padding:8px;margin-left:8px;cursor:pointer}
+
+.app-content{padding:20px}
+.dashboard .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.card{background:#fff;border-radius:8px;padding:12px;box-shadow:0 1px 2px rgba(16,24,40,0.04)}
+.dashboard-card .card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.ui-card.card{box-shadow:var(--shadow-card);border-radius:var(--radius-card);padding:16px}
+.ui-card .card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.list-row{display:flex;align-items:center;gap:12px;padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.04)}
+.list-row .list-main{flex:1}
+.slide-over{position:fixed;inset:0;display:flex;justify-content:flex-end;z-index:90}
+.slide-panel{width:420px;background:var(--surface);box-shadow:var(--shadow-elevated);display:flex;flex-direction:column;max-height:100vh}
+.slide-backdrop{flex:1;background:rgba(2,6,23,0.4)}
+.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:100}
+.modal-box{background:var(--surface);border-radius:12px;box-shadow:var(--shadow-elevated);width:520px;max-width:96%;padding:16px}
+.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.45)}
+.empty-state{text-align:center;padding:28px}
+.toast-stack{position:fixed;top:16px;right:16px;display:flex;flex-direction:column;gap:8px;z-index:120}
+.toast{background:#0f172a;color:var(--surface);padding:8px 12px;border-radius:8px;display:flex;gap:8px;align-items:center}
+.ui-table{width:100%;border-collapse:collapse}
+.ui-table th{cursor:pointer;text-align:left;padding:8px;border-bottom:1px solid rgba(15,23,42,0.06)}
+.ui-table td{padding:8px;border-bottom:1px solid rgba(15,23,42,0.04)}
+.filters-toolbar{display:flex;gap:12px;align-items:center}
+.filters-search{padding:8px;border-radius:8px;border:1px solid rgba(15,23,42,0.06)}
+.quick-create .quick-box{background:var(--surface);padding:16px;border-radius:12px;box-shadow:var(--shadow-elevated)}
+.file-uploader .upload-area{padding:20px;border:2px dashed rgba(15,23,42,0.06);border-radius:8px;text-align:center}
+
+/* Micro-interactions */
+.ui-card{transition: transform var(--motion-medium) var(--motion-ease), box-shadow var(--motion-medium) var(--motion-ease), opacity var(--motion-fast) var(--motion-ease)}
+.ui-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-elevated)}
+.ui-card:focus-within{outline:2px solid rgba(11,119,176,0.14);outline-offset:2px}
+
+/* Focus ring using accent-2 with reduced opacity */
+*:focus{box-shadow:0 0 0 3px rgba(11,119,176,0.12);}
+
+/* Slide-over/Modal transitions */
+.slide-panel{transform:translateX(8px);transition:transform var(--motion-medium) var(--motion-ease),opacity var(--motion-medium) var(--motion-ease)}
+.slide-over[aria-hidden="false"] .slide-panel{transform:translateX(0)}
+.modal-box{transform:translateY(8px);opacity:0;transition:transform var(--motion-medium) var(--motion-ease),opacity var(--motion-medium) var(--motion-ease)}
+.modal[aria-hidden="false"] .modal-box{transform:translateY(0);opacity:1}
+
+/* Smooth toast entrance */
+.toast{transform:translateY(-8px);opacity:0;transition:transform var(--motion-fast) var(--motion-ease),opacity var(--motion-fast) var(--motion-ease)}
+.toast-stack .toast{transform:translateY(0);opacity:1}
+.loading{padding:24px}
+
+@media (max-width:900px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;z-index:30}
+  .app-main{margin-left:64px}
+  .dashboard .grid{grid-template-columns:1fr}
+}
