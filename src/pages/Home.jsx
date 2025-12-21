@@ -65,25 +65,6 @@ export default function Home(){
         </div>
       </section>
 
-      <section className="section container" aria-labelledby="trust">
-        <h2 id="trust">Trusted by</h2>
-        <div style={{display:'flex',gap:16,alignItems:'center',marginTop:12}}>
-          <div className="card" style={{padding:12}}>Logo A</div>
-          <div className="card" style={{padding:12}}>Logo B</div>
-          <div className="card" style={{padding:12}}>Logo C</div>
-          <div style={{marginLeft:'auto',display:'flex',gap:12}}>
-            <div className="card" style={{padding:12,textAlign:'center'}}>
-              <strong>12x</strong>
-              <div className="muted">Faster delivery</div>
-            </div>
-            <div className="card" style={{padding:12,textAlign:'center'}}>
-              <strong>99.9%</strong>
-              <div className="muted">Uptime</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="section container">
         <h2>Use cases</h2>
         <div className="cards" style={{marginTop:12}}>
