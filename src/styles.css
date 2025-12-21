@@ -170,6 +170,21 @@ body{
 /* Utilities */
 .muted{color:var(--muted)}
 
+/* Mobile-first alignment fixes */
+@media(max-width:640px){
+  .app-root{overflow-x:hidden}
+  .container{padding:0 16px}
+  .site-header .topbar{padding:12px 0}
+  .hero{padding:32px 0}
+  .hero-inner{align-items:stretch}
+  .hero-inner > div{width:100%}
+  .hero-inner aside{width:100%;min-width:0}
+  .hero-cta{width:100%;flex-wrap:wrap}
+  .section{padding:24px 0}
+  .container.section,.section.container{padding-inline:16px}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
 @media(min-width:720px){
   .main-nav{display:flex;gap:8px}
   .hamburger{display:none}
