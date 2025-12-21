@@ -5,6 +5,7 @@ import React from 'react'
 import LeadershipCard from '../components/LeadershipCard'
 import NewsBanner from '../components/NewsBanner'
 import CaseStudyCard from '../components/CaseStudyCard'
+import MaintenanceBanner from '../components/MaintenanceBanner'
 import useDocumentTitle from '../utils/useDocumentTitle'
 
 const leaders = [
@@ -17,6 +18,7 @@ export default function Home(){
   useDocumentTitle('Home')
   return (
     <div className="page home">
+      <MaintenanceBanner />
       <section className="hero">
         <div className="container hero-inner">
           <div style={{maxWidth:640}}>
