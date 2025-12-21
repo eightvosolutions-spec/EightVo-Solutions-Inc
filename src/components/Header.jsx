@@ -22,7 +22,7 @@ export default function Header(){
       <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="container topbar">
         <button className={`hamburger ${open ? 'open' : ''}`} onClick={()=>setOpen(true)} aria-label="Open menu">☰</button>
-        <Link to="/" className="brand">EightVo Solutions</Link>
+        <Link to="/" className="brand">EightVO Solutions</Link>
 
         <div className="nav-spacer" />
 

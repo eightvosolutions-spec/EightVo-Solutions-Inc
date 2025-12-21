@@ -8,7 +8,7 @@ import CaseStudyCard from '../components/CaseStudyCard'
 import useDocumentTitle from '../utils/useDocumentTitle'
 
 const leaders = [
-  {name:'Sandeep Reddy', title:'CEO', photo:'', quote:'We focus on measurable impact.'},
+  {name:'Sandeep Reddy', title:'Direc', photo:'', quote:'We focus on measurable impact.'},
   {name:'Manoj Kumar', title:'Director - Business & Technology', photo:'', quote:'Technology and strategy together.'},
   {name:'Bala Krishna', title:'Director - Operations, India', photo:'', quote:'Operational excellence and delivery.'}
 ]
