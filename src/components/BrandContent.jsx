@@ -27,15 +27,9 @@ export function CallToAction(){
   return <section className="ev-wrap ev-cta"><div><span className="ev-eyebrow">LET’S BUILD SOMETHING USEFUL</span><h2>Your expertise.<br/>Our technology. Real possibilities.</h2><p>Have an idea, a business challenge, or a domain you know inside out? Let’s talk.</p></div><Link className="ev-button ev-primary" to="/contact">Start a conversation <span aria-hidden="true">↗</span></Link></section>
 }
 
-// Branded fallback (matches the site's dark ink / mint palette) so a stale or
-// slow-loading Unsplash id never leaves a broken-image icon on the page.
-const PHOTO_FALLBACK = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 900'><rect width='100%25' height='100%25' fill='%23132f34'/><text x='50%25' y='50%25' dy='.35em' text-anchor='middle' fill='%23c9f4a5' font-family='Arial, Helvetica, sans-serif' font-size='40' font-weight='700'>EightVo Solutions</text></svg>"
-
-export function Photo({id,alt,className='',eager=false}){
-  const [failed, setFailed] = React.useState(false)
-  const base='https://images.unsplash.com/'+id
-  if(failed){
-    return <img className={className} src={PHOTO_FALLBACK} width="1200" height="900" alt={alt} loading={eager?'eager':'lazy'} />
-  }
-  return <img className={className} src={base+'?auto=format&fit=crop&w=1200&q=80'} srcSet={[480,800,1200,1600].map(w=>base+'?auto=format&fit=crop&w='+w+'&q=80 '+w+'w').join(', ')} sizes="(max-width: 760px) 100vw, 50vw" width="1200" height="900" alt={alt} loading={eager?'eager':'lazy'} decoding="async" onError={()=>setFailed(true)}/>
+// A full-bleed brand banner used at the top of pages that would otherwise be
+// text-only. The image is an original, locally-hosted brand graphic (not a
+// stock photo, and not hotlinked from a third party), so it always renders.
+export function PageBanner({ image, alt = '' }){
+  return <div className="ev-page-banner"><img src={image} alt={alt} width="1760" height="560" loading="eager" decoding="async" /></div>
 }
