@@ -1,6 +1,7 @@
 /* Public website: responsive layout and an independent visual system. */
 :root{--ev-ink:#132f34;--ev-muted:#53666a;--ev-paper:#f7f9f6;--ev-card:#fff;--ev-line:#dce5df;--ev-mint:#c9f4a5;--ev-soft:#edf2ed;--max-width:1200px}
 [data-theme="dark"]{--ev-ink:#edf5ef;--ev-muted:#b3c4bd;--ev-paper:#101d20;--ev-card:#1a2b2e;--ev-line:#34474a;--ev-soft:#203438}
+html{-webkit-tap-highlight-color:transparent}
 body{background:var(--ev-paper);color:var(--ev-ink);line-height:1.6}
 .app-root{padding-top:0}
 .main-content{flex:1;min-width:0}
@@ -18,8 +19,11 @@ body{background:var(--ev-paper);color:var(--ev-ink);line-height:1.6}
 .ev-header{position:sticky;top:0;z-index:50;background:var(--ev-paper);border-bottom:1px solid var(--ev-line)}
 .ev-header-inner{display:flex;align-items:center;gap:24px;min-height:88px}
 .ev-brand{display:inline-flex;align-items:center;gap:10px;font-size:1.35rem;font-weight:750;letter-spacing:-.04em;text-decoration:none;color:var(--ev-ink);line-height:1.2}
-.ev-brand-symbol{display:grid;place-items:center;width:40px;height:46px;border:1px solid var(--ev-ink);border-radius:14px;font-size:2.2rem;font-weight:500}
+.ev-brand-symbol{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.ev-brand-symbol img{height:44px;width:44px;object-fit:contain;display:block}
+.ev-footer-brand .ev-brand-symbol img{height:34px;width:34px}
 .ev-brand-small{display:block;font-size:.55rem;letter-spacing:.25em;margin-top:4px}
+.ev-footer-brand{display:inline-flex;align-items:center;gap:10px}
 .ev-nav{display:flex;align-items:center;gap:30px;margin-left:auto}
 .ev-nav a{font-size:.85rem;text-decoration:none;color:var(--ev-ink)}
 .ev-nav a.active{text-decoration:underline;text-underline-offset:7px}
@@ -105,7 +109,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @media(max-width:760px){
 .ev-wrap{width:calc(100% - 36px)}
 .ev-header-inner{min-height:74px;flex-wrap:wrap;gap:10px}
-.ev-brand{font-size:1.1rem}.ev-brand-symbol{height:36px;width:32px;font-size:1.8rem}
+.ev-brand{font-size:1.1rem}.ev-brand-symbol img{height:36px;width:36px}
 .ev-menu-toggle{display:block;margin-left:auto;padding-inline:10px;font-size:.8rem}
 .ev-nav{display:none;order:4;width:100%;margin:0;padding:12px 0 22px;flex-direction:column;align-items:stretch;gap:6px}
 .ev-nav.is-open{display:flex}.ev-nav>a{padding:12px}
@@ -120,3 +124,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 }
 @media(max-width:380px){.ev-actions{align-items:stretch;flex-direction:column}.ev-footer-grid{grid-template-columns:1fr}.ev-preview-top{flex-wrap:wrap}.ev-product{padding:26px 18px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}.ev-button:hover{transform:none}}
+
+/* Installed-PWA polish: respect notches/home indicators on phones without
+   affecting the normal in-browser layout. */
+@media (display-mode: standalone){
+  .ev-header{padding-top:env(safe-area-inset-top)}
+  .ev-footer{padding-bottom:calc(22px + env(safe-area-inset-bottom))}
+  body{padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+}
