@@ -1,47 +1,17 @@
-import React, {useState, useContext} from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import React, { useState, useEffect, useRef, useContext } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ThemeContext } from '../context/ThemeProvider'
-import ContactSlideOver from './ContactSlideOver'
-import { trackEvent } from '../utils/analytics'
-import MobileMenu from './MobileMenu'
-
 export default function Header(){
-  const [open, setOpen] = useState(false)
-  const [q, setQ] = useState('')
-  const navigate = useNavigate()
-  const { theme, toggle } = useContext(ThemeContext)
-  const [contactOpen, setContactOpen] = useState(false)
-
-  function submitSearch(e){
-    e.preventDefault()
-    if(q.trim()) navigate(`/?q=${encodeURIComponent(q.trim())}`)
-  }
-
-  return (
-    <header className="site-header">
-      <a className="skip-link" href="#main-content">Skip to content</a>
-      <div className="container topbar">
-        <button className={`hamburger ${open ? 'open' : ''}`} onClick={()=>setOpen(true)} aria-label="Open menu">☰</button>
-        <Link to="/" className="brand">EightVO Solutions</Link>
-
-        <div className="nav-spacer" />
-
-        <nav className="main-nav" aria-label="Primary">
-          <Link to="/">Home</Link>
-          <Link to="/solutions">Solutions</Link>
-          <Link to="/case-studies">Case studies</Link>
-          <Link to="/blog">Blog</Link>
-          <Link to="/careers">Careers</Link>
-        </nav>
-        <div style={{marginLeft:12,display:'flex',gap:8,alignItems:'center'}}>
-          <button onClick={() => { trackEvent('cta_contact_clicked',{source:'header'}); setContactOpen(true) }} className="btn btn-primary header-cta" aria-label="Contact EightVo Solutions">Contact</button>
-          <button onClick={toggle} aria-pressed={theme==='dark'} className="btn-ghost" aria-label="Toggle theme">
-            {theme === 'dark' ? '🌙' : '🌞'}
-          </button>
-        </div>
-      </div>
-      <MobileMenu open={open} onClose={()=>setOpen(false)} />
-      <ContactSlideOver open={contactOpen} onClose={()=>setContactOpen(false)} />
-    </header>
-  )
+  const [open,setOpen]=useState(false)
+  const button=useRef(null)
+  const {pathname}=useLocation()
+  const {theme,toggle}=useContext(ThemeContext)
+  useEffect(()=>{setOpen(false)},[pathname])
+  function closeOnEscape(e){if(e.key==='Escape'){setOpen(false);button.current?.focus()}}
+  return <header className="ev-header" onKeyDown={closeOnEscape}><a className="ev-skip" href="#main-content">Skip to content</a><div className="ev-wrap ev-header-inner">
+    <Link to="/" className="ev-brand" aria-label="EightVo Solutions home"><span className="ev-brand-symbol"><img src="/icons/logo-mark.png" alt="" width="44" height="44" /></span><span>EightVo<span className="ev-brand-small">SOLUTIONS</span></span></Link>
+    <button ref={button} className="ev-menu-toggle" aria-expanded={open} aria-controls="ev-navigation" onClick={()=>setOpen(!open)}>{open?'Close ✕':'Menu ☰'}</button>
+    <nav id="ev-navigation" className={'ev-nav'+(open?' is-open':'')} aria-label="Primary navigation"><NavLink to="/solutions">What we build</NavLink><NavLink to="/products/mycanjourney">MyCanJourney</NavLink><NavLink to="/about">About us</NavLink><Link className="ev-button ev-primary" to="/contact">Let’s talk <span aria-hidden="true">↗</span></Link></nav>
+    <button className="ev-theme" onClick={toggle} aria-label={theme==='dark'?'Switch to light theme':'Switch to dark theme'} aria-pressed={theme==='dark'}>{theme==='dark'?'☀':'◐'}</button>
+  </div></header>
 }

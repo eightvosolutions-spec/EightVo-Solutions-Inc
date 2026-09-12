@@ -1,14 +1,4 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import useDocumentTitle from '../utils/useDocumentTitle'
-
-export default function Blog(){
-  useDocumentTitle('Blog')
-  return (
-    <div className="page blog">
-      <div className="container section">
-        <h1>Blog</h1>
-        <p className="muted">Insights and updates.</p>
-      </div>
-    </div>
-  )
-}
+export default function Blog(){useDocumentTitle("Our thinking");return <div className="ev-page"><section className="ev-wrap ev-page-intro"><span className="ev-eyebrow">Our thinking</span><h1>Useful AI starts with useful questions.</h1><p>What should become simpler? Where does expertise matter most? How can a product keep earning its place in someone’s day? These questions guide what we build. We’ll share product updates and lessons from the journey here.</p><Link className="ev-button ev-primary" to="/contact">Start a conversation ↗</Link></section></div>}
