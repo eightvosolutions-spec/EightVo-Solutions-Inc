@@ -7,21 +7,21 @@ body{background:var(--ev-paper);color:var(--ev-ink);line-height:1.6}
 .main-content{flex:1;min-width:0}
 .ev-wrap{width:min(1200px,calc(100% - 64px));margin-inline:auto}
 .ev-page{overflow:clip}
-.ev-page h1,.ev-page h2,.ev-page h3{line-height:1.12;letter-spacing:-.045em}
-.ev-page h1{font-size:clamp(2.75rem,5.1vw,4.6rem);font-weight:550;margin:22px 0}
-.ev-page h2{font-size:clamp(2rem,3.3vw,3rem);font-weight:550;margin:14px 0 24px}
+.ev-page h1,.ev-page h2,.ev-page h3{line-height:1.12;letter-spacing:-.03em;font-family:var(--font-accent)}
+.ev-page h1{font-size:clamp(2.75rem,5.1vw,4.6rem);font-weight:700;margin:22px 0}
+.ev-page h2{font-size:clamp(2rem,3.3vw,3rem);font-weight:700;margin:14px 0 24px}
 .ev-page h3{font-size:1.35rem;font-weight:600}
 .ev-page p{color:var(--ev-muted);line-height:1.75}
 .ev-page em{font-style:normal;color:#4c8065}
 [data-theme="dark"] .ev-page em{color:var(--ev-mint)}
-.ev-eyebrow{font-size:.7rem;font-weight:750;letter-spacing:.15em;text-transform:uppercase}
+.ev-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;font-family:var(--font-accent)}
 .ev-dot{color:#648b48}
 .ev-header{position:sticky;top:0;z-index:50;background:var(--ev-paper);border-bottom:1px solid var(--ev-line)}
 .ev-header-inner{display:flex;align-items:center;gap:24px;min-height:88px}
-.ev-brand{display:inline-flex;align-items:center;gap:10px;font-size:1.35rem;font-weight:750;letter-spacing:-.04em;text-decoration:none;color:var(--ev-ink);line-height:1.2}
+.ev-brand{display:inline-flex;align-items:center;gap:12px;font-size:1.4rem;font-weight:700;letter-spacing:-.02em;text-decoration:none;color:var(--ev-ink);line-height:1.2;font-family:var(--font-accent)}
 .ev-brand-symbol{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
-.ev-brand-symbol img{height:44px;width:44px;object-fit:contain;display:block}
-.ev-footer-brand .ev-brand-symbol img{height:34px;width:34px}
+.ev-brand-symbol img{height:52px;width:52px;object-fit:contain;display:block}
+.ev-footer-brand .ev-brand-symbol img{height:40px;width:40px}
 .ev-brand-small{display:block;font-size:.55rem;letter-spacing:.25em;margin-top:4px}
 .ev-footer-brand{display:inline-flex;align-items:center;gap:10px}
 .ev-nav{display:flex;align-items:center;gap:30px;margin-left:auto}
@@ -109,7 +109,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
 @media(max-width:760px){
 .ev-wrap{width:calc(100% - 36px)}
 .ev-header-inner{min-height:74px;flex-wrap:wrap;gap:10px}
-.ev-brand{font-size:1.1rem}.ev-brand-symbol img{height:36px;width:36px}
+.ev-brand{font-size:1.15rem}.ev-brand-symbol img{height:42px;width:42px}
 .ev-menu-toggle{display:block;margin-left:auto;padding-inline:10px;font-size:.8rem}
 .ev-nav{display:none;order:4;width:100%;margin:0;padding:12px 0 22px;flex-direction:column;align-items:stretch;gap:6px}
 .ev-nav.is-open{display:flex}.ev-nav>a{padding:12px}

@@ -13,8 +13,8 @@
   --danger: #ef4444;
 
   /* Typography */
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-  --font-accent: "GT America", "Poppins", var(--font-sans);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-accent: 'Plus Jakarta Sans', var(--font-sans);
   --type-h1: 2.25rem; /* 36px */
   --type-h2: 1.75rem; /* 28px */
   --type-h3: 1.25rem; /* 20px */
