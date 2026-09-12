@@ -15,6 +15,7 @@ const Privacy = React.lazy(() => import('./pages/Privacy'))
 const CookiePolicy = React.lazy(() => import('./pages/CookiePolicy'))
 const Accessibility = React.lazy(() => import('./pages/Accessibility'))
 const Careers = React.lazy(() => import('./pages/Careers'))
+const JobDetail = React.lazy(() => import('./pages/JobDetail'))
 const AppShell = React.lazy(() => import('./layouts/AppShell'))
 const AppDashboard = React.lazy(() => import('./pages/app/Dashboard'))
 
@@ -35,6 +36,7 @@ export default function App(){
             <Route path="/case-studies/*" element={<Navigate to="/products/mycanjourney" replace/>} />
             <Route path="/blog" element={<Blog/>} />
             <Route path="/careers" element={<Careers/>} />
+            <Route path="/careers/:slug" element={<JobDetail/>} />
             <Route path="/pricing" element={<Pricing/>} />
             <Route path="/privacy" element={<Privacy/>} />
             <Route path="/cookie-policy" element={<CookiePolicy/>} />
