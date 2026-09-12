@@ -17,7 +17,7 @@ body{background:var(--ev-paper);color:var(--ev-ink);line-height:1.6}
 .ev-eyebrow{font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;font-family:var(--font-accent)}
 .ev-dot{color:#648b48}
 .ev-page-banner{position:relative;width:100%;overflow:hidden;line-height:0}
-.ev-page-banner img{width:100%;height:clamp(170px,26vw,300px);object-fit:cover;display:block}
+.ev-page-banner img{width:100%;height:clamp(170px,26vw,300px);object-fit:cover;object-position:var(--banner-focus,center);display:block}
 .ev-page-banner::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,var(--ev-paper) 100%)}
 .ev-header{position:sticky;top:0;z-index:50;background:var(--ev-paper);border-bottom:1px solid var(--ev-line)}
 .ev-header-inner{display:flex;align-items:center;gap:24px;min-height:88px}
