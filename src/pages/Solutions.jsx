@@ -1,29 +1,4 @@
 import React from 'react'
+import { Capabilities, CallToAction } from '../components/BrandContent'
 import useDocumentTitle from '../utils/useDocumentTitle'
-
-export default function Solutions(){
-  useDocumentTitle('Solutions')
-  return (
-    <div className="page solutions">
-      <div className="container section">
-        <h1>Solutions</h1>
-        <p className="muted">Product and delivery solutions tailored for enterprise and startups.</p>
-
-        <div className="cards" style={{marginTop:20}}>
-          <article className="card">
-            <h3>Product Strategy</h3>
-            <p className="muted">Roadmapping, discovery, and prioritized backlogs.</p>
-          </article>
-          <article className="card">
-            <h3>Engineering Delivery</h3>
-            <p className="muted">End-to-end engineering, CI/CD, and quality practices.</p>
-          </article>
-          <article className="card">
-            <h3>Platform & Ops</h3>
-            <p className="muted">Cloud, infra automation, and observability.</p>
-          </article>
-        </div>
-      </div>
-    </div>
-  )
-}
+export default function Solutions(){useDocumentTitle('What we build');return <div className="ev-page"><section className="ev-wrap ev-page-intro"><span className="ev-eyebrow">WHAT WE BUILD</span><h1>Intelligence that helps.<br/><em>Experiences that work.</em></h1><p>We turn business challenges into useful applications, websites, and connected workflows. Every product starts with the people who will use it.</p><Capabilities/></section><section className="ev-wrap ev-section"><span className="ev-eyebrow">FROM IDEA TO EVERYDAY VALUE</span><h2>A thoughtful path to better products.</h2><div className="ev-cards">{[['Understand','Work with domain experts to define the problem, the people affected, and what a better experience looks like.'],['Build and learn','Design clear journeys, develop focused capabilities, and test assumptions with real feedback.'],['Evolve sustainably','Improve the experience over time with maintainable technology and an eye on long-term usefulness.']].map(([a,b],i)=><article className="ev-card" key={a}><span className="ev-number">0{i+1}</span><h3>{a}</h3><p>{b}</p></article>)}</div></section><CallToAction/></div>}

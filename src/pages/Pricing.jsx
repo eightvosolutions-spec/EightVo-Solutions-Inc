@@ -1,14 +1,4 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import useDocumentTitle from '../utils/useDocumentTitle'
-
-export default function Pricing(){
-  useDocumentTitle('Pricing')
-  return (
-    <div className="page pricing">
-      <div className="container section">
-        <h1>Pricing</h1>
-        <p className="muted">Simple predictable pricing for teams and enterprises.</p>
-      </div>
-    </div>
-  )
-}
+export default function Pricing(){useDocumentTitle("Project enquiries");return <div className="ev-page"><section className="ev-wrap ev-page-intro"><span className="ev-eyebrow">Project enquiries</span><h1>The right scope starts with your goals.</h1><p>Every idea has different needs. Let’s understand your users, priorities, integrations, and timeline before discussing scope and cost. MyCanJourney is still in development; product pricing has not been announced.</p><Link className="ev-button ev-primary" to="/contact">Start a conversation ↗</Link></section></div>}

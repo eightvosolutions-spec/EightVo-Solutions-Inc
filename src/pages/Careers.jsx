@@ -1,6 +1,4 @@
-// Careers page removed from MVP. Kept as a stub to avoid broken imports.
 import React from 'react'
-
-export default function Careers(){
-  return null
-}
+import {Link} from 'react-router-dom'
+import useDocumentTitle from '../utils/useDocumentTitle'
+export default function Careers(){useDocumentTitle("Work with us");return <div className="ev-page"><section className="ev-wrap ev-page-intro"><span className="ev-eyebrow">Work with us</span><h1>Bring your perspective. Build with purpose.</h1><p>We’re interested in connecting with people who care about thoughtful design, practical AI, and deep business expertise. Tell us what you know, what you love building, and how you’d like to contribute. Specific open roles will be shared here when available.</p><Link className="ev-button ev-primary" to="/contact">Start a conversation ↗</Link></section></div>}
