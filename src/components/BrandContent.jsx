@@ -27,9 +27,8 @@ export function CallToAction(){
   return <section className="ev-wrap ev-cta"><div><span className="ev-eyebrow">LET’S BUILD SOMETHING USEFUL</span><h2>Your expertise.<br/>Our technology. Real possibilities.</h2><p>Have an idea, a business challenge, or a domain you know inside out? Let’s talk.</p></div><Link className="ev-button ev-primary" to="/contact">Start a conversation <span aria-hidden="true">↗</span></Link></section>
 }
 
-// A full-bleed brand banner used at the top of pages that would otherwise be
-// text-only. The image is an original, locally-hosted brand graphic (not a
-// stock photo, and not hotlinked from a third party), so it always renders.
+// Preserve the focal graphic when wide local banners are cropped on phones.
 export function PageBanner({ image, alt = '' }){
-  return <div className="ev-page-banner"><img src={image} alt={alt} width="1760" height="560" loading="eager" decoding="async" /></div>
+  const leftAligned = ['/images/banner-blog.jpg', '/images/banner-mycanjourney.jpg'].includes(image)
+  return <div className="ev-page-banner" style={{ '--banner-focus': leftAligned ? 'left center' : 'right center' }}><img src={image} alt={alt} width="1760" height="560" loading="eager" decoding="async" /></div>
 }
