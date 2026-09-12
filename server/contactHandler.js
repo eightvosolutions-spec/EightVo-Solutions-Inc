@@ -22,7 +22,13 @@ async function sendWithBrevo({ name, email, message }) {
     replyTo: { email }
   }
 
-  await apiInstance.sendTransacEmail(sendSmtpEmail)
+  const response = await apiInstance.sendTransacEmail(sendSmtpEmail)
+  // Log Brevo's own message id so a "sent but never arrived" report can be
+  // traced in Brevo's Transactional > Logs dashboard (Delivered/Blocked/
+  // Bounced/etc). Without this id there is no way to look up what actually
+  // happened to a specific submission after this call returns 200.
+  const messageId = response && (response.messageId || (response.body && response.body.messageId))
+  console.log('Brevo accepted contact email', { to, from, messageId })
   return { status: 200, body: { ok: true, provider: 'brevo' } }
 }
 
@@ -49,6 +55,7 @@ async function sendWithSmtp({ name, email, message }) {
     text: `Name: ${name}\nEmail: ${email}\n\n${message}`
   })
 
+  console.log('SMTP accepted contact email', { to, from, messageId: info.messageId })
   return { status: 200, body: { ok: true, provider: 'smtp', id: info.messageId } }
 }
 
