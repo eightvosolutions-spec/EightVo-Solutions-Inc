@@ -1,4 +1,13 @@
 /* Public website: responsive layout and an independent visual system. */
+/* Meaningful brand scenes: preserve subjects on every screen. */
+.ev-story-banner{margin-top:28px;text-align:center}
+.ev-story-banner img{display:block;width:100%;height:clamp(260px,38vw,480px);object-fit:contain;background:#e9e5d9;border-radius:16px}
+.ev-story-banner figcaption{font-size:.7rem;color:var(--ev-muted);margin-top:8px}
+.ev-story-banner + .ev-page-intro{padding-top:36px}
+.ev-page .ev-about>img{height:auto;aspect-ratio:3/2;object-fit:contain}
+.ev-page .ev-hero-image{aspect-ratio:4/5;align-self:center;min-height:0;width:100%}
+.ev-page .ev-hero-image>img{object-fit:contain}
+.ev-page .ev-image-shade{background:linear-gradient(180deg,rgba(7,31,25,.3),transparent 18%,transparent 60%,rgba(7,31,25,.65))}
 :root{--ev-ink:#132f34;--ev-muted:#53666a;--ev-paper:#f7f9f6;--ev-card:#fff;--ev-line:#dce5df;--ev-mint:#c9f4a5;--ev-soft:#edf2ed;--max-width:1200px}
 [data-theme="dark"]{--ev-ink:#edf5ef;--ev-muted:#b3c4bd;--ev-paper:#101d20;--ev-card:#1a2b2e;--ev-line:#34474a;--ev-soft:#203438}
 html{-webkit-tap-highlight-color:transparent}

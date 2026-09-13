@@ -27,8 +27,8 @@ export function CallToAction(){
   return <section className="ev-wrap ev-cta"><div><span className="ev-eyebrow">LET’S BUILD SOMETHING USEFUL</span><h2>Your expertise.<br/>Our technology. Real possibilities.</h2><p>Have an idea, a business challenge, or a domain you know inside out? Let’s talk.</p></div><Link className="ev-button ev-primary" to="/contact">Start a conversation <span aria-hidden="true">↗</span></Link></section>
 }
 
-// Preserve the focal graphic when wide local banners are cropped on phones.
+// Show the complete scene instead of cropping people out of a narrow strip.
 export function PageBanner({ image, alt = '' }){
-  const leftAligned = ['/images/banner-blog.jpg', '/images/banner-mycanjourney.jpg'].includes(image)
-  return <div className="ev-page-banner" style={{ '--banner-focus': leftAligned ? 'left center' : 'right center' }}><img src={image} alt={alt} width="1760" height="560" loading="eager" decoding="async" /></div>
+  const portrait = image === '/images/ai-products.webp'
+  return <figure className="ev-story-banner ev-wrap"><img src={image} alt={alt} width={portrait ? 1000 : 1400} height={portrait ? 1250 : 933} loading="eager" decoding="async"/><figcaption>AI-created illustration · Inspired by what we’re building</figcaption></figure>
 }
