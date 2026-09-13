@@ -7,7 +7,7 @@ import useDocumentTitle from '../utils/useDocumentTitle'
 export default function Careers(){
   useDocumentTitle('Work with us')
   return <div className="ev-page">
-    <PageBanner image="/images/banner-solutions.jpg"/>
+    <PageBanner image="/images/expert-collaboration.webp" alt="Illustrative collaboration scene, not a photograph of EightVo staff"/>
     <section className="ev-wrap ev-page-intro">
       <span className="ev-eyebrow">WORK WITH US</span>
       <h1>Bring your perspective.<br/><em>Build with purpose.</em></h1>
