@@ -32,7 +32,7 @@ export const jobs = [
     niceToHave: [
       'Experience operating infrastructure that serves AI/ML features or integrates with third-party model APIs',
       'Familiarity with observability tooling such as Prometheus, Grafana, or a hosted equivalent',
-      'Experience with serverless/edge platforms (e.g. Vercel, Netlify) alongside traditional cloud infrastructure',
+      'Experience with Vercel serverless/edge deployments alongside traditional cloud infrastructure',
       'Interest in, or experience with, startup-stage engineering, where you wear more than one hat'
     ]
   },
