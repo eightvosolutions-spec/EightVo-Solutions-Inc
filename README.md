@@ -42,7 +42,12 @@ Notes for contributors / agents:
 
 ## Deploy to Vercel
 
-This project is configured for Vercel static hosting with a serverless contact endpoint (`api/contact.js`).
+Vercel is the production hosting platform for this project. The React/Vite frontend and both email endpoints must be deployed in the same Vercel project:
+
+- `POST /api/contact` — `api/contact.js`
+- `POST /api/careers/apply` — `api/careers/apply.js`
+
+The `server/` directory contains shared email handlers used by these functions and an Express server for local development. Keep it: it is not an alternative production hosting integration.
 
 1. Install the Vercel CLI and log in:
 
@@ -71,5 +76,8 @@ This project is configured for Vercel static hosting with a serverless contact e
    vercel --prod
    ```
 
-The included `vercel.json` sets the build command (`npm run build`), output directory (`dist`), Node 18 runtime for functions, and an SPA rewrite so client-side routes resolve to `index.html`.
+There is no checked-in `vercel.json`. Use the Vercel project settings for the Vite framework, build command `npm run build`, output directory `dist`, and production branch `main`. Preserve `/api/*` function routes when configuring client-side routing.
 
+Set `BREVO_API_KEY`, `BREVO_FROM`, and `CONTACT_TO` in the Vercel Production environment, then redeploy after changes. Never put API keys in frontend code or variables prefixed with `VITE_`.
+
+Retired hosting connections must be disconnected in the previous provider's dashboard. Removing source-code references does not stop an external provider from building the repository. Keep production DNS pointed at the domains configured in Vercel.
